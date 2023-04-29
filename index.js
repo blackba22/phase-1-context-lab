@@ -1,13 +1,57 @@
-/* Your Code Here */
 
-/*
- We're giving you this function. Take a look at it, you might see some usage
- that's new and different. That's because we're avoiding a well-known, but
- sneaky bug that we'll cover in the next few lessons!
+function createEmployeeRecord(employeeArray) {
+  const employeeRecord = {}
+    employeeRecord.firstName = employeeArray[0]
+    employeeRecord.familyName = employeeArray[1]
+    employeeRecord.title = employeeArray[2]
+    employeeRecord.payPerHour = employeeArray[3]
+    employeeRecord.timeInEvents = []
+    employeeRecord.timeOutEvents = []
+    return employeeRecord;
+}
+function createEmployeeRecords(proArray) {
+    const newEmployees = []
+    proArray.forEach(employee => newEmployees.push(createEmployeeRecord(employee)))
+    return newEmployees;
+}
+function createTimeInEvent(notesDate) {
+    const [date, hour] = notesDate.split(" ")
+    this.timeInEvents.push({
+        type: "TimeIn",
+        hour: parseInt(hour, 10),
+        date: date
+    });
+   return this
+}    
 
- As a result, the lessons for this function will pass *and* it will be available
- for you to use if you need it!
- */
+function createTimeOutEvent(notesDate) {
+    const [date, hour] = notesDate.split(" ")
+    this.timeOutEvents.push({
+        type: "TimeOut",
+        hour: parseInt(hour, 10),
+        date: date
+    });
+   return this
+}    
+function hoursWorkedOnDate(date) {
+const timeIn = this.timeInEvents.find(event => event.date ===date);
+const timeOut = this.timeOutEvents.find(event => event.date === date);
+return (timeOut.hour - timeIn.hour)/100
+}
+
+function wagesEarnedOnDate(date) {
+    return (hoursWorkedOnDate.call(this,date) * this.payPerHour);
+}
+
+
+function calculatePayroll(empRecords) {
+    const totalForEachEmployee = empRecords.map(record => allWagesFor.call(record))
+    return totalForEachEmployee.reduce((total, empTotal) => total + empTotal)
+}
+function findEmployeeByFirstName(src, name) {
+    return src.find(record => record.firstName === name);
+}
+
 
 const allWagesFor = function () {
     const eligibleDates = this.timeInEvents.map(function (e) {
